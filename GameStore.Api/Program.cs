@@ -40,6 +40,7 @@ builder.Services.AddSingleton<IGamesRepository, InMemGamesRepository>();
 
 //read connection string
 var connString = builder.Configuration.GetConnectionString("GameStoreContext");
+builder.Services.AddSqlServer<GameStoreContext>(connString);
 
 var app = builder.Build();
  

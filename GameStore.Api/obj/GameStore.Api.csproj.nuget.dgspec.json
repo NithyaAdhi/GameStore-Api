@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\dotnet\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {}
+    "C:\\Users\\DELL\\Documents\\github\\GameStore-Api\\GameStore.Api\\GameStore.Api.csproj": {}
   },
   "projects": {
-    "D:\\dotnet\\GameStore\\GameStore.Api\\GameStore.Api.csproj": {
+    "C:\\Users\\DELL\\Documents\\github\\GameStore-Api\\GameStore.Api\\GameStore.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dotnet\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Documents\\github\\GameStore-Api\\GameStore.Api\\GameStore.Api.csproj",
         "projectName": "GameStore.Api",
-        "projectPath": "D:\\dotnet\\GameStore\\GameStore.Api\\GameStore.Api.csproj",
+        "projectPath": "C:\\Users\\DELL\\Documents\\github\\GameStore-Api\\GameStore.Api\\GameStore.Api.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\dotnet\\GameStore\\GameStore.Api\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Documents\\github\\GameStore-Api\\GameStore.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
             "MinimalApis.Extensions": {
               "target": "Package",
               "version": "[0.11.0, )"

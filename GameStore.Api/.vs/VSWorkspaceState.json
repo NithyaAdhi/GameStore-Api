@@ -4,8 +4,9 @@
     "\\bin",
     "\\bin\\Debug",
     "\\bin\\Debug\\net8.0",
+    "\\Data",
     "\\Entities"
   ],
-  "SelectedNode": "\\GameStore.Api.sln",
+  "SelectedNode": "\\Data\\GameStoreContext.cs",
   "PreviewInSolutionExplorer": false
 }
