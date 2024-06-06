@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bin",
-    "\\bin\\Debug",
-    "\\bin\\Debug\\net8.0",
     "\\Data",
-    "\\Entities"
+    "\\Entities",
+    "\\Repositeries"
   ],
   "SelectedNode": "\\GameStore.Api.sln",
   "PreviewInSolutionExplorer": false

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 
@@ -41,31 +42,34 @@ public class InMemGamesRepository : IGamesRepository
 
     public List<Game> Game => game;
 
-    public IEnumerable<Game> GetAll()
+    public async Task <IEnumerable<Game>> GetAllAsync()
     {
-        return Game;
+        return await Task.FromResult(Game);
     }
 
-    public Game? Get(int id)
+    public async Task <Game?> GetAsync(int id)
     {
-        return Game.Find(game => game.Id == id);
+        return await Task.FromResult(Game.Find(game => game.Id == id));
     }
 
-    public void Create(Game games)
+    public async Task CreateAsync(Game games)
     {
         games.Id = Game.Max(game => game.Id ) + 1;
         Game.Add(games);
+        await Task.CompletedTask;
     }
 
-    public void Update(Game UpdatedGame)
+    public async Task UpdateAsync(Game UpdatedGame)
     {
         var index = Game.FindIndex(game => game.Id == UpdatedGame.Id);
         Game[index] = UpdatedGame;
+        await Task.CompletedTask;
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
         var index = Game.FindIndex(game => game.Id == id);
         Game.RemoveAt(index);
+        await Task.CompletedTask;
     }
 }

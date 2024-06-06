@@ -17,20 +17,20 @@ public static class GamesEndpoints {
 
         //app.MapGet("/games", () => game);
 
-        group.MapGet("/", (IGamesRepository repository) => 
-        repository.GetAll().Select(game => game.AsDto()));
+        group.MapGet("/", async (IGamesRepository repository) => 
+        (await repository.GetAllAsync()).Select(game => game.AsDto()));
 
         //app.MapGet("/games/{id}", (int id) => game.Find(game => game.Id == id));
 
-        group.MapGet("/{id}", (IGamesRepository repository, int id) =>
+        group.MapGet("/{id}", async (IGamesRepository repository, int id) =>
         {
-            Game? games = repository.Get(id);
+            Game? games = await repository.GetAsync(id);
             return games is not null ? Results.Ok(games.AsDto()): Results.NotFound();
             
         })
         .WithName(GetGameEndpointName);
 
-        group.MapPost("/", (IGamesRepository repository, CreateGameDto gameDto) =>
+        group.MapPost("/",async (IGamesRepository repository, CreateGameDto gameDto) =>
         {
             Game game = new()
             {
@@ -41,13 +41,13 @@ public static class GamesEndpoints {
                 ImageUri = gameDto.ImageUri
             };
 
-            repository.Create(game);
+            await repository.CreateAsync(game);
             return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game);
         });
 
-        group.MapPut("/{id}", (IGamesRepository repository,int id, UpdateGameDto updatedGameDto) =>
+        group.MapPut("/{id}", async (IGamesRepository repository,int id, UpdateGameDto updatedGameDto) =>
         {
-            Game? existingGame = repository.Get(id);
+            Game? existingGame =await repository.GetAsync(id);
 
             if (existingGame is null)
             {
@@ -59,18 +59,18 @@ public static class GamesEndpoints {
             existingGame.Genre = updatedGameDto.Genre;
             existingGame.ImageUri = updatedGameDto.ImageUri;
 
-            repository.Update(existingGame);
+            await repository.UpdateAsync(existingGame);
 
             return Results.NoContent();
         });
 
-        group.MapDelete("/games/{id}", (IGamesRepository repository, int id) =>
+        group.MapDelete("/games/{id}", async (IGamesRepository repository, int id) =>
         {
-            Game? games = repository.Get(id);
+            Game? games =await repository.GetAsync(id);
 
             if (games is not null)
             {
-                repository.Delete(id);
+               await repository.DeleteAsync(id);
             }
 
             return Results.NoContent();

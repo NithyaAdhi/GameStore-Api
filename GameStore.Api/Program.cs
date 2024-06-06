@@ -35,17 +35,22 @@ List<Game> game = new()
 }; */
 
 
+using GameStore.Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<IGamesRepository, InMemGamesRepository>();
+builder.Services.AddRepositories(builder.Configuration);
+//builder.Services.AddScoped<IGamesRepository, EntityFrameworkGamesRepository>();
 
 //read connection string
-var connString = builder.Configuration.GetConnectionString("GameStoreContext");
-builder.Services.AddSqlServer<GameStoreContext>(connString);
+//var connString = builder.Configuration.GetConnectionString("GameStoreContext");
+//builder.Services.AddSqlServer<GameStoreContext>(connString);
 
 var app = builder.Build();
- 
 
-app.MapGamesEndpoints();
+await app.Services.initializeDbAsync();
+
+    app.MapGamesEndpoints();
 
 /* var group = app.MapGroup("/games")
                .WithParameterValidation();
